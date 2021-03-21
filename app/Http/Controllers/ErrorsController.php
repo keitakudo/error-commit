@@ -10,13 +10,18 @@ class ErrorsController extends Controller
 {
     public function index()
     {
-        // エラー一覧をidの降順で取得
-        $errors = Error::orderBy('id', 'desc')->paginate(10);
+        $data = [];
+        if (\Auth::check()) { // 認証済みの場合
+            // 認証済みユーザを取得
+            $user = \Auth::user();
+            
+            $data = [
+                'user' => $user,
+            ];
+        }
 
-        // エラー一覧ビューでそれを表示
-        return view('errorrs.index', [
-            'errors' => $errors,
-        ]);
+        // Welcomeビューでそれらを表示
+        return view('welcome', $data);
     }
     public function create()
     {
@@ -30,7 +35,10 @@ class ErrorsController extends Controller
     {
          // エラーを作成
         $error = new Error;
-        $error->content = $request->content;
+        $error->title = $request->title;
+        $error->process = $request->process;
+        $error->screenshot = $request->screenshot;
+        $error->url = $request->url;
         $error->save();
 
         // トップページへリダイレクトさせる
@@ -63,7 +71,7 @@ class ErrorsController extends Controller
         //idの値でメッセージを検索して取得
         $message = Message::findOrFail($id);
         // メッセージを更新
-        $message->content = $request->content;
+        $message->title = $request->title;
         $message->save();
 
         // トップページへリダイレクトさせる

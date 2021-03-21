@@ -16,7 +16,7 @@
                 @foreach ($errors as $error)
                 <tr>
                     <td>{{ $error->id }}</td>
-                    <td>{{ $error->content }}</td>
+                    <td>{{ $error->title }}</td>
                 </tr>
                 @endforeach
             </tbody>

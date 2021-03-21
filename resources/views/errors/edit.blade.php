@@ -8,16 +8,16 @@
             {!! Form::model($error, ['route' => 'errors.store']) !!}
 
                 <div class="form-group">
-                    {!! Form::label('content', 'error-message:') !!}
-                    {!! Form::text('content', null, ['class' => 'form-control']) !!}
+                    {!! Form::label('title', 'error-message:') !!}
+                    {!! Form::text('title', null, ['class' => 'form-control']) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::label('screenshot', 'screenshot:') !!}
                     {!! Form::text('screenshot', null, ['class' => 'form-control']) !!}
                 </div>
                 <div class="form-group">
-                    {!! Form::label('clearform', 'clearform:') !!}
-                    {!! Form::text('clearform', null, ['class' => 'form-control']) !!}
+                    {!! Form::label('process', 'process:') !!}
+                    {!! Form::text('process', null, ['class' => 'form-control']) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::label('url', 'url:') !!}

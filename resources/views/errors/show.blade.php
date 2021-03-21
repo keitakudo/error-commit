@@ -5,14 +5,14 @@
 <div class="row">
         <div class="col-md-6 offset-md-3">
             <table class="table table-bordered">
-                <h1>id = {{ $error->content }} </h1>
+                <h1>id = {{ $error->title }} </h1>
                 <tr>
                     <th>id</th>
                     <td>{{ $error->id }}</td>
                 </tr>
                 <tr>
                     <th>error-message</th>
-                    <td>{{ $error->content }}</td>
+                    <td>{{ $error->title }}</td>
                 </tr>
                 <tr>
                     <th>screenshot</th>
