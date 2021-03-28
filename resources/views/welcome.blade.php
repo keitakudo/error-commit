@@ -5,7 +5,7 @@
         {{ Auth::user()->name }}
         <div class="col-sm-8">
                 {{-- 投稿一覧 --}}
-                @include('errors.errors')
+                @include('errorlogs.errorlogs')
             </div>
     @else
         <div class="center jumbotron">

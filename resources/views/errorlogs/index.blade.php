@@ -1,29 +1,29 @@
 @extends('layouts.app')
 
 @section('content')
-    
-    <h1>errors</h1>
+
+    <h1>errorlogs</h1>
 
     @if (count($errors) > 0)
         <table class="table table-striped">
             <thead>
                 <tr>
                     <th>id</th>
-                    <th>error-messages</th>
+                    <th>error-title</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($errors as $error)
+                @foreach ($errorlogs as $errorlog)
                 <tr>
-                    <td>{{ $error->id }}</td>
-                    <td>{{ $error->title }}</td>
+                    <td>{!! link_to_route('errorlogs.show', $errorlog->id, ['errorlog' => $errorlog->id]) !!}</td>
+                    <td>{{ $errorlog->title }}</td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
     @endif
-                    
     {{-- メッセージ作成ページへのリンク --}}
-    {!! link_to_route('errors.create', '新規エラーの投稿', [], ['class' => 'btn btn-primary']) !!}
+    {!! link_to_route('errorlogs.create', 'new-error', [], ['class' => 'btn btn-primary']) !!}
+
 
 @endsection

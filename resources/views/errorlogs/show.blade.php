@@ -5,32 +5,32 @@
 <div class="row">
         <div class="col-md-6 offset-md-3">
             <table class="table table-bordered">
-                <h1>id = {{ $error->title }} </h1>
+                <h1>{{ $errorlog->title }} </h1>
                 <tr>
                     <th>id</th>
-                    <td>{{ $error->id }}</td>
+                    <td>{{ $errorlog->id }}</td>
                 </tr>
                 <tr>
-                    <th>error-message</th>
-                    <td>{{ $error->title }}</td>
+                    <th>error-title</th>
+                    <td>{{ $errorlog->title }}</td>
                 </tr>
                 <tr>
                     <th>screenshot</th>
-                    <td>{{ $error->screenshot }}</td>
+                    <td>{{ $errorlog->screenshot }}</td>
                 </tr>
                 <tr>
                     <th>error-message</th>
-                    <td>{{ $error->clearform }}</td>
+                    <td>{{ $errorlog->process }}</td>
                 </tr>
                 <tr>
                     <th>url</th>
-                    <td>{{ $error->url }}</td>
+                    <td>{{ $errorlog->url }}</td>
                 </tr>
                 </table>
                 {{-- エラー編集ページへのリンク --}}
-            {!! link_to_route('errors.edit', 'edit', ['error' => $error->id], ['class' => 'btn btn-light']) !!}
+            {!! link_to_route('errorlogs.edit', 'edit', ['errorlog' => $errorlog->id], ['class' => 'btn btn-light']) !!}
                 {{-- エラー削除フォーム --}}
-            {!! Form::model($error, ['route' => ['errors.destroy', $error->id], 'method' => 'delete']) !!}
+            {!! Form::model($errorlog, ['route' => ['errorlogs.destroy', $errorlog->id], 'method' => 'delete']) !!}
             {!! Form::submit('delete', ['class' => 'btn btn-danger']) !!}
         {!! Form::close() !!}
     </div>

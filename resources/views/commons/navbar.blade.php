@@ -12,13 +12,13 @@
             <ul class="navbar-nav">
                 @if (Auth::check())
                     {{-- エラー一覧ページへのリンク --}}
-                    <li class="nav-item">{!! link_to_route('errors.index', 'Errors', [], ['class' => 'nav-link']) !!}</li>
+                    <li class="nav-item">{!! link_to_route('errorlogs.index', 'Errors', [], ['class' => 'nav-link']) !!}</li>
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{ Auth::user()->name }}</a>
                             <ul class="dropdown-menu dropdown-menu-right">
                             {{-- エラー作成ページへのリンク --}}
                                 <li class="dropdown-divider"></li>
-                                    <li class="dropdown-item">{!! link_to_route('errors.create', 'new error') !!}</li>
+                                    <li class="dropdown-item">{!! link_to_route('errorlogs.create', 'new error') !!}</li>
                                 <li class="dropdown-divider"></li>
                                 {{-- ログアウトへのリンク --}}
                                     <li class="dropdown-item">{!! link_to_route('logout.get', 'Logout') !!}</li>

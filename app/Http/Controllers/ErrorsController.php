@@ -10,58 +10,59 @@ class ErrorsController extends Controller
 {
     public function index()
     {
-        $data = [];
-        if (\Auth::check()) { // 認証済みの場合
-            // 認証済みユーザを取得
-            $user = \Auth::user();
-            
+        $errorlogs = Error::all();
+
             $data = [
-                'user' => $user,
+                'errorlogs' => $errorlogs,
             ];
-        }
+    
 
         // Welcomeビューでそれらを表示
         return view('welcome', $data);
     }
     public function create()
     {
-        $error = new Error;
+        $errorlog = new Error;
         
-        return view('errors.create',[
-            'error' => $error,
+        return view('errorlogs.create',[
+            'errorlog' => $errorlog,
             ]);
     }
     public function store(Request $request)
     {
-         // エラーを作成
-        $error = new Error;
-        $error->title = $request->title;
-        $error->process = $request->process;
-        $error->screenshot = $request->screenshot;
-        $error->url = $request->url;
-        $error->save();
+        $request->validate([
+            'title' => 'required|max:255',
+        ]);
 
+        // エラーを作成
+        $errorlog = new Error;
+        $errorlog->title = $request->title;
+        $errorlog->process = $request->process;
+        $errorlog->screenshot = $request->screenshot;
+        $errorlog->url = $request->url;
+        $errorlog->save();
+        
         // トップページへリダイレクトさせる
         return redirect('/');
     }
     public function show($id)
     {
         // idの値でユーザを検索して取得
-        $error = Error::findOrFail($id);
+        $errorlog = Error::findOrFail($id);
 
         // ユーザ詳細ビューでそれを表示
-        return view('errors.show', [
-            'error' => $error,
+        return view('errorlogs.show', [
+            'errorlog' => $errorlog,
         ]);
     }
     public function edit($id)
     {
         // idの値でメッセージを検索して取得
-        $error = Error::findOrFail($id);
+        $errorlog = Error::findOrFail($id);
 
         // メッセージ編集ビューでそれを表示
-        return view('errors.edit', [
-            'error' => $error,
+        return view('errorlogs.edit', [
+            'errorlog' => $errorlog,
         ]);
     }
 
@@ -69,23 +70,22 @@ class ErrorsController extends Controller
     public function update(Request $request, $id)
     {
         //idの値でメッセージを検索して取得
-        $message = Message::findOrFail($id);
+        $errorlog = Error::findOrFail($id);
         // メッセージを更新
-        $message->title = $request->title;
-        $message->save();
+        $errorlog->title = $request->title;
+        $errorlog->save();
 
         // トップページへリダイレクトさせる
         return redirect('/');
     }
 
-    // deleteでmessages/（任意のid）にアクセスされた場合の「削除処理」
+    // deleteでerrorlogs/（任意のid）にアクセスされた場合の「削除処理」
     public function destroy($id)
     {
         //idの値でメッセージを検索して取得
-        $message = Message::findOrFail($id);
-        // メッセージを削除
-        $message->delete();
-
+        $errorlog = Error::findOrFail($id);
+        
+        $errorlog->delete();
         // トップページへリダイレクトさせる
         return redirect('/');
     }

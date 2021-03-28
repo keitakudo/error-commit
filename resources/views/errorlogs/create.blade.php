@@ -5,10 +5,10 @@
     <div class="row">
         <div class="col-md-6 offset-md-3">
             <h1>new-error</h1>
-            {!! Form::model($error, ['route' => 'errors.store']) !!}
+            {!! Form::model($errorlog, ['route' => 'errorlogs.store']) !!}
 
                 <div class="form-group">
-                    {!! Form::label('title', 'error-message:') !!}
+                    {!! Form::label('title', 'error-title:') !!}
                     {!! Form::text('title', null, ['class' => 'form-control']) !!}
                 </div>
                 <div class="form-group">
