@@ -9,8 +9,8 @@ use App\Error; // 追加
 class ErrorsController extends Controller
 {
     public function index()
-    {
-        $errorlogs = Error::all();
+    {   
+        $errorlogs= Error::orderBy('id', 'desc')->paginate(5);
 
             $data = [
                 'errorlogs' => $errorlogs,
@@ -30,8 +30,10 @@ class ErrorsController extends Controller
     }
     public function store(Request $request)
     {
+        // バリデーション
         $request->validate([
             'title' => 'required|max:255',
+            'process' => 'required|max:255',
         ]);
 
         // エラーを作成
@@ -56,7 +58,12 @@ class ErrorsController extends Controller
         ]);
     }
     public function edit($id)
-    {
+    {   
+        // バリデーション
+        $request->validate([
+            'title' => 'required|max:255',
+            'process' => 'required|max:255',
+        ]);
         // idの値でメッセージを検索して取得
         $errorlog = Error::findOrFail($id);
 
@@ -68,7 +75,12 @@ class ErrorsController extends Controller
 
     // putまたはpatchでmessages/（任意のid）にアクセスされた場合の「更新処理」
     public function update(Request $request, $id)
-    {
+    {   
+        // バリデーション
+        $request->validate([
+            'title' => 'required|max:255',
+            'process' => 'required|max:255',
+        ]);
         //idの値でメッセージを検索して取得
         $errorlog = Error::findOrFail($id);
         // メッセージを更新

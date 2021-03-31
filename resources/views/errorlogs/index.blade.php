@@ -22,6 +22,9 @@
             </tbody>
         </table>
     @endif
+    {{-- ページネーションのリンク --}}
+    {{ $errorlogs->links() }}
+    
     {{-- メッセージ作成ページへのリンク --}}
     {!! link_to_route('errorlogs.create', 'new-error', [], ['class' => 'btn btn-primary']) !!}
 
